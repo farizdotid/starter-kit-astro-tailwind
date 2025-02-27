@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+---
+
+<Layout title="About | Astro Tailwind Starter Kit">
+  <Navbar />
+  
+  <Hero 
+    title="About This Template" 
+    subtitle="Learn more about the Astro Tailwind Starter Kit"
+  />
+  
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="prose prose-indigo lg:prose-lg mx-auto">
+      <h2>About the Astro Tailwind Starter Kit</h2>
+      <p>
+        This starter template was created to help developers quickly bootstrap new projects
+        using Astro and Tailwind CSS. It provides a solid foundation with pre-built components
+        and best practices already implemented.
+      </p>
+      
+      <h3>Why Astro?</h3>
+      <p>
+        Astro is a modern static site builder that delivers lightning-fast performance by
+        shipping zero JavaScript by default. It allows you to use your favorite UI components
+        from React, Vue, Svelte, and more while optimizing your site for speed.
+      </p>
+      
+      <h3>Why Tailwind CSS?</h3>
+      <p>
+        Tailwind CSS is a utility-first CSS framework that allows you to build custom designs
+        without ever leaving your HTML. It provides low-level utility classes that let you
+        build completely custom designs without fighting the framework.
+      </p>
+      
+      <h3>Features</h3>
+      <ul>
+        <li>Fast performance with Astro's partial hydration</li>
+        <li>Responsive design with Tailwind CSS</li>
+        <li>Google Font (Poppins) integration</li>
+        <li>Pre-built components for common UI patterns</li>
+        <li>SEO-friendly with proper meta tags</li>
+        <li>TypeScript support</li>
+        <li>Easy customization</li>
+      </ul>
+      
+      <h3>Getting Help</h3>
+      <p>
+        If you need help with this template, you can:
+      </p>
+      <ul>
+        <li>Check out the <a href="https://docs.astro.build">Astro documentation</a></li>
+        <li>Visit the <a href="https://tailwindcss.com/docs">Tailwind CSS documentation</a></li>
+        <li>Join the <a href="https://astro.build/chat">Astro Discord community</a></li>
+        <li>File an issue on the <a href="https://github.com/yourusername/astro-tailwind-starter">GitHub repository</a></li>
+      </ul>
+      
+      <h3>License</h3>
+      <p>
+        This template is open-source and available under the MIT License. Feel free to use it
+        for personal or commercial projects.
+      </p>
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>

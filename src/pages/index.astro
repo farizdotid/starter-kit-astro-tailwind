@@ -1,0 +1,250 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+
+// Icons (SVG strings)
+const icons = {
+  speed: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+  </svg>`,
+  
+  tailwind: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
+  </svg>`,
+  
+  components: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 01-.657.643 48.39 48.39 0 01-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 01-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 00-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 01-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 00.657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 01-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 005.427-.63 48.05 48.05 0 00.582-4.717.532.532 0 00-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 00.658-.663 48.422 48.422 0 00-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 01-.61-.58v0z" />
+  </svg>`,
+  
+  seo: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+  </svg>`,
+  
+  typescript: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+  </svg>`,
+  
+  responsive: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+  </svg>`
+};
+
+// Installation code example
+const installCode = `# Clone the repository
+git clone https://github.com/yourusername/astro-tailwind-starter.git my-project
+
+# Navigate to the project directory
+cd my-project
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev`;
+
+// Component usage example
+const componentCode = `---
+// src/pages/about.astro
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+
+---
+
+<Layout title="About Us | Astro Tailwind Starter">
+  <Navbar />
+  
+  <Hero 
+    title="About Our Company" 
+    subtitle="Learn more about our mission and values"
+  />
+  
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Your page content here -->
+  </main>
+  
+  <Footer />
+</Layout>`;
+
+// Tailwind customization example
+const tailwindCode = `// tailwind.config.mjs
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  theme: {
+    extend: {
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+      },
+      colors: {
+        primary: {
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+          // Add your custom colors here
+        },
+      },
+    },
+  },
+  plugins: [],
+}`;
+---
+
+<Layout title="Astro Tailwind Starter Kit - Modern Web Development">
+  <Navbar />
+  
+  <Hero 
+    title="Astro Tailwind Starter Kit" 
+    subtitle="A modern, responsive starter template with Astro, Tailwind CSS, and Poppins font"
+  />
+  
+  <main>
+    <!-- Features Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900">Features</h2>
+          <p class="mt-4 text-xl text-gray-600">Everything you need to build modern websites</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <FeatureCard 
+            title="Lightning Fast" 
+            description="Built with Astro for incredible performance and minimal JavaScript."
+            icon={icons.speed}
+          />
+          <FeatureCard 
+            title="Tailwind CSS" 
+            description="Utility-first CSS framework for rapid UI development without leaving your HTML."
+            icon={icons.tailwind}
+          />
+          <FeatureCard 
+            title="Component-Based" 
+            description="Modular components that can be reused across your project."
+            icon={icons.components}
+          />
+          <FeatureCard 
+            title="SEO Optimized" 
+            description="Built-in SEO features to help your site rank better in search engines."
+            icon={icons.seo}
+          />
+          <FeatureCard 
+            title="TypeScript Ready" 
+            description="Full TypeScript support for better developer experience and fewer bugs."
+            icon={icons.typescript}
+          />
+          <FeatureCard 
+            title="Fully Responsive" 
+            description="Looks great on all devices, from mobile phones to desktop computers."
+            icon={icons.responsive}
+          />
+        </div>
+      </div>
+    </section>
+    
+    <!-- How to Use Section -->
+    <section id="getting-started" class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900">How to Use This Template</h2>
+          <p class="mt-4 text-xl text-gray-600">Get up and running in minutes</p>
+        </div>
+        
+        <div class="space-y-12">
+          <!-- Installation -->
+          <div>
+            <h3 class="text-2xl font-semibold mb-4">1. Installation</h3>
+            <p class="text-gray-600 mb-6">
+              Clone the repository and install dependencies to get started with your new project.
+            </p>
+            <CodeBlock code={installCode} language="bash" title="Terminal" />
+          </div>
+          
+          <!-- Project Structure -->
+          <div>
+            <h3 class="text-2xl font-semibold mb-4">2. Project Structure</h3>
+            <p class="text-gray-600 mb-6">
+              The template follows a clean and organized structure:
+            </p>
+            <div class="bg-white rounded-lg shadow-md p-6 font-mono text-sm">
+              <ul class="space-y-2 text-gray-700">
+                <li><span class="text-indigo-600">src/</span> - Source files</li>
+                <li>├── <span class="text-indigo-600">components/</span> - Reusable UI components</li>
+                <li>├── <span class="text-indigo-600">layouts/</span> - Page layouts</li>
+                <li>├── <span class="text-indigo-600">pages/</span> - Page routes</li>
+                <li>├── <span class="text-indigo-600">styles/</span> - Global styles</li>
+                <li><span class="text-indigo-600">public/</span> - Static assets</li>
+                <li><span class="text-indigo-600">astro.config.mjs</span> - Astro configuration</li>
+                <li><span class="text-indigo-600">tailwind.config.mjs</span> - Tailwind configuration</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Using Components -->
+          <div>
+            <h3 class="text-2xl font-semibold mb-4">3. Using Components</h3>
+            <p class="text-gray-600 mb-6">
+              The template includes several pre-built components that you can use in your pages:
+            </p>
+            <CodeBlock code={componentCode} language="astro" title="src/pages/about.astro" />
+          </div>
+          
+          <!-- Customizing Tailwind -->
+          <div>
+            <h3 class="text-2xl font-semibold mb-4">4. Customizing Tailwind</h3>
+            <p class="text-gray-600 mb-6">
+              Extend Tailwind's default configuration in the tailwind.config.mjs file:
+            </p>
+            <CodeBlock code={tailwindCode} language="javascript" title="tailwind.config.mjs" />
+          </div>
+          
+          <!-- Deployment -->
+          <div>
+            <h3 class="text-2xl font-semibold mb-4">5. Deployment</h3>
+            <p class="text-gray-600 mb-6">
+              Deploy your site to your favorite hosting platform:
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <a href="https://docs.astro.build/en/guides/deploy/netlify/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                <img src="https://www.netlify.com/v3/img/components/logomark.png" alt="Netlify" class="h-12 mb-4" />
+                <span class="font-medium">Deploy to Netlify</span>
+              </a>
+              <a href="https://docs.astro.build/en/guides/deploy/vercel/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                <img src="https://assets.vercel.com/image/upload/v1607554385/repositories/vercel/logo.png" alt="Vercel" class="h-12 mb-4" />
+                <span class="font-medium">Deploy to Vercel</span>
+              </a>
+              <a href="https://docs.astro.build/en/guides/deploy/github/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Pages" class="h-12 mb-4" />
+                <span class="font-medium">Deploy to GitHub Pages</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="py-16 bg-indigo-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-indigo-600">Ready to Get Started?</h2>
+        <p class="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+          Start building your next project with this template and focus on what matters most - your content and features.
+        </p>
+        <div class="mt-8 flex justify-center gap-4">
+          <a href="https://github.com/yourusername/astro-tailwind-starter" target="_blank" rel="noopener noreferrer" class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-md font-medium shadow-md hover:bg-indigo-700 transition-colors duration-200">
+            View on GitHub
+          </a>
+          <a href="https://docs.astro.build" target="_blank" rel="noopener noreferrer" class="inline-block bg-white text-indigo-600 border border-indigo-600 px-6 py-3 rounded-md font-medium hover:bg-indigo-50 transition-colors duration-200">
+            Astro Documentation
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>

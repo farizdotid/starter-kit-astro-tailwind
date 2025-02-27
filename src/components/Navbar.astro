@@ -1,0 +1,76 @@
+---
+const navItems = [
+  { name: "Home", url: "/" },
+];
+---
+
+<header class="bg-white shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex items-center">
+        <a href="/" class="flex-shrink-0 flex items-center">
+          <span class="text-indigo-600 font-bold text-xl">Astro Starter</span>
+        </a>
+      </div>
+      <nav class="hidden md:flex space-x-8 items-center">
+        {navItems.map(item => (
+          <a 
+            href={item.url} 
+            class="text-gray-600 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
+          >
+            {item.name}
+          </a>
+        ))}
+        <a 
+          href="https://github.com/yourusername/astro-tailwind-starter" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 transition-colors duration-200"
+        >
+          GitHub
+        </a>
+      </nav>
+      <div class="flex items-center md:hidden">
+        <button id="mobile-menu-button" class="text-gray-500 hover:text-indigo-600">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Mobile menu, show/hide based on menu state -->
+  <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      {navItems.map(item => (
+        <a 
+          href={item.url} 
+          class="block px-3 py-2 text-base font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50 rounded-md"
+        >
+          {item.name}
+        </a>
+      ))}
+      <a 
+        href="https://github.com/yourusername/astro-tailwind-starter" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="block px-3 py-2 text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md mt-2"
+      >
+        GitHub
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>

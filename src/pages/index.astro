@@ -34,11 +34,12 @@ const icons = {
 };
 
 // Installation code example
-const installCode = `# Clone the repository
+const installCode = `
+# Clone the repository
 git clone https://github.com/farizdotid/starter-kit-astro-tailwind.git
 
 # Navigate to the project directory
-cd my-project
+cd starter-kit-astro-tailwind
 
 # Install dependencies
 npm install
@@ -47,7 +48,8 @@ npm install
 npm run dev`;
 
 // Component usage example
-const componentCode = `---
+const componentCode = `
+---
 // src/pages/about.astro
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
@@ -72,7 +74,8 @@ import Hero from '../components/Hero.astro';
 </Layout>`;
 
 // Tailwind customization example
-const tailwindCode = `// tailwind.config.mjs
+const tailwindCode = `
+// tailwind.config.mjs
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
@@ -80,13 +83,6 @@ export default {
     extend: {
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
-      },
-      colors: {
-        primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          // Add your custom colors here
-        },
       },
     },
   },
